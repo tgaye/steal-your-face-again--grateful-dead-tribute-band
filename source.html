@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steal Your Face Again | Grateful Dead Tribute Band</title>
+    <style>
+        :root {
+            --primary: #6a3093;
+            --secondary: #a044ff;
+            --accent: #f7b733;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #333;
+            --text-light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e6e6e6 100%);
+            background-attachment: fixed;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: url('http://localhost:3001/output_images/mahol8y3-izgnp4ba/grateful-dead-band-performance_1280x720.png') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .album {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .album:hover {
+            transform: translateY(-10px);
+        }
+
+        .album-cover {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .album:hover .album-cover img {
+            transform: scale(1.05);
+        }
+
+        .album-info {
+            padding: 1.5rem;
+        }
+
+        .album-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .album-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .album-tracks {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .album-tracks li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .album-tracks li:last-child {
+            border-bottom: none;
+        }
+
+        .tour-dates {
+            background: var(--dark);
+            color: white;
+        }
+
+        .tour-date {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .tour-date:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+
+        .date {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-right: 2rem;
+        }
+
+        .venue {
+            flex: 1;
+        }
+
+        .venue h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .about-band {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .merch-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .merch-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .merch-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .merch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .merch-item:hover .merch-image img {
+            transform: scale(1.05);
+        }
+
+        .merch-info {
+            padding: 1.5rem;
+        }
+
+        .merch-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .merch-info .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+
+        .newsletter {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-band {
+                flex-direction: column;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
+
+<base target="_self">
+
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/steal-your-face-logo_150x150.png" alt="Steal Your Face Again Logo">
+                    Steal Your Face Again
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#tour">Tour</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#merch">Merch</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1>Colorado Dead Dreams</h1>
+            <p>Our new album is out now! Experience the magic of the Grateful Dead through our unique interpretations.</p>
+            <div>
+                <a href="#music" class="btn">Listen Now</a>
+                <a href="#tour" class="btn btn-outline">Tour Dates</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="container">
+        <div class="section-title">
+            <h2>Our Music</h2>
+        </div>
+        <div class="album-grid">
+            <div class="album fade-in delay-1">
+                <div class="album-cover">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/colorado-dead-dreams-album-cover_800x800.png" alt="Colorado Dead Dreams Album Cover">
+                </div>
+                <div class="album-info">
+                    <h3>Colorado Dead Dreams (2025)</h3>
+                    <p>Our latest album featuring live recordings from Red Rocks and other iconic Colorado venues</p>
+                    <ul class="album-tracks">
+                        <li>Truckin' (Live at Red Rocks)</li>
+                        <li>Sugar Magnolia</li>
+                        <li>Fire on the Mountain</li>
+                        <li>Casey Jones</li>
+                        <li>Ripple</li>
+                        <li>Uncle John's Band</li>
+                        <li>Scarlet Begonias</li>
+                        <li>Touch of Grey</li>
+                        <li>Franklin's Tower</li>
+                        <li>Brokedown Palace (Encore)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="album fade-in delay-2">
+                <div class="album-cover">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/terrapin-stationed-here-album-cover_800x800.png" alt="Terrapin Stationed Here Album Cover">
+                </div>
+                <div class="album-info">
+                    <h3>Terrapin Stationed Here (2024)</h3>
+                    <p>Our second studio album featuring deeper cuts and extended jams</p>
+                    <ul class="album-tracks">
+                        <li>Estimated Prophet</li>
+                        <li>Eyes of the World</li>
+                        <li>The Music Never Stopped</li>
+                        <li>Wharf Rat</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="album fade-in delay-3">
+                <div class="album-cover">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/bears-choice-revisited-album-cover_800x800.png" alt="Bear's Choice Revisited Album Cover">
+                </div>
+                <div class="album-info">
+                    <h3>Bear's Choice Revisited (2023)</h3>
+                    <p>Our debut album featuring classic Dead tunes with our own twist</p>
+                    <ul class="album-tracks">
+                        <li>China Cat Sunflower</li>
+                        <li>I Know You Rider</li>
+                        <li>Friend of the Devil</li>
+                        <li>Cumberland Blues</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tour" class="tour-dates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tour Dates</h2>
+            </div>
+            <div class="tour-list">
+                <div class="tour-date fade-in delay-1">
+                    <div class="date">May 15, 2025</div>
+                    <div class="venue">
+                        <h3>Fox Theatre</h3>
+                        <p>Boulder, CO</p>
+                    </div>
+                    <a href="#" class="btn">Tickets</a>
+                </div>
+                <div class="tour-date fade-in delay-2">
+                    <div class="date">May 18, 2025</div>
+                    <div class="venue">
+                        <h3>Mishawaka Amphitheatre</h3>
+                        <p>Bellvue, CO</p>
+                    </div>
+                    <a href="#" class="btn">Tickets</a>
+                </div>
+                <div class="tour-date fade-in delay-3">
+                    <div class="date">May 22, 2025</div>
+                    <div class="venue">
+                        <h3>Cervantes' Masterpiece</h3>
+                        <p>Denver, CO</p>
+                    </div>
+                    <a href="#" class="btn">Tickets</a>
+                </div>
+                <div class="tour-date fade-in delay-4">
+                    <div class="date">May 25, 2025</div>
+                    <div class="venue">
+                        <h3>Aggie Theatre</h3>
+                        <p>Fort Collins, CO</p>
+                    </div>
+                    <a href="#" class="btn">Tickets</a>
+                </div>
+                <div class="tour-date fade-in delay-1">
+                    <div class="date">May 29, 2025</div>
+                    <div class="venue">
+                        <h3>Bluebird Theater</h3>
+                        <p>Denver, CO</p>
+                    </div>
+                    <a href="#" class="btn">Tickets</a>
+                </div>
+                <div class="tour-date fade-in delay-2">
+                    <div class="date">June 1, 2025</div>
+                    <div class="venue">
+                        <h3>Red Rocks Amphitheatre</h3>
+                        <p>Morrison, CO</p>
+                        <p><em>Special album release show</em></p>
+                    </div>
+                    <a href="#" class="btn">Tickets</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>About The Band</h2>
+        </div>
+        <div class="about-band">
+            <div class="about-image fade-in delay-1">
+                <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/grateful-dead-tribute-band-performing_800x600.png" alt="Steal Your Face Again performing live">
+            </div>
+            <div class="about-content fade-in delay-2">
+                <h3>Keeping the Dead Alive</h3>
+                <p>Steal Your Face Again is Colorado's premier Grateful Dead tribute band, formed in 2022 by a group of lifelong Deadheads who wanted to share their love for the music with the world.</p>
+                <p>We're not just a cover band - we're a celebration of the Grateful Dead's legacy, bringing the spirit of the Dead to new generations while staying true to the improvisational magic that made the original band so special.</p>
+                <p>Our members have played together in various Colorado bands for over a decade, and our chemistry on stage creates that same magical energy that Deadheads crave.</p>
+                <p>Join us on tour and experience the music that never stopped!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="merch" class="container">
+        <div class="section-title">
+            <h2>Merchandise</h2>
+        </div>
+        <div class="merch-grid">
+            <div class="merch-item fade-in delay-1">
+                <div class="merch-image">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/steal-your-face-t-shirt_800x800.png" alt="Steal Your Face Again T-Shirt">
+                </div>
+                <div class="merch-info">
+                    <h3>Steal Your Face Again T-Shirt</h3>
+                    <p>Classic tie-dye design with our logo</p>
+                    <div class="price">$25.00</div>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="merch-item fade-in delay-2">
+                <div class="merch-image">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/colorado-dead-dreams-vinyl_800x800.png" alt="Colorado Dead Dreams Vinyl">
+                </div>
+                <div class="merch-info">
+                    <h3>Colorado Dead Dreams Vinyl</h3>
+                    <p>Limited edition colored vinyl</p>
+                    <div class="price">$30.00</div>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="merch-item fade-in delay-3">
+                <div class="merch-image">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/dead-inspired-trucker-hat_800x800.png" alt="Dead Inspired Trucker Hat">
+                </div>
+                <div class="merch-info">
+                    <h3>Dead Inspired Trucker Hat</h3>
+                    <p>Embroidered patch with our logo</p>
+                    <div class="price">$20.00</div>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="merch-item fade-in delay-4">
+                <div class="merch-image">
+                    <img src="http://localhost:3001/output_images/mahol8y3-izgnp4ba/grateful-dead-patch-set_800x800.png" alt="Grateful Dead Patch Set">
+                </div>
+                <div class="merch-info">
+                    <h3>Grateful Dead Patch Set</h3>
+                    <p>Collection of classic Dead patches</p>
+                    <div class="price">$15.00</div>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="newsletter">
+        <div class="container">
+            <div class="section-title">
+                <h2>Join Our Mailing List</h2>
+                <p>Stay updated on tour dates, new releases, and special events</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required="">
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-spotify"></i></a>
+            </div>
+            <p class="copyright">© 2025 Steal Your Face Again. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thanks for subscribing with ${email}! We'll keep you updated on all things Steal Your Face Again.`);
+            this.reset();
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.merch-item .btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const itemName = this.closest('.merch-item').querySelector('h3').textContent;
+                alert(`${itemName} has been added to your cart!`);
+            });
+        });
+    </script>
+
+              
+          
+                
+          
+              
